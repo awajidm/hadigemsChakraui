@@ -41,21 +41,21 @@ const AppHeader = () => {
   };
 
   return (
-    <HStack p="5">
-      <Link as={ReactLink} to="/">
+    <HStack p="4">
+      <ReactLink as={Link} to="/">
         <Image w="200px" h="35px" src="/images/logo.png" alt="HadiGems" />
-      </Link>
+      </ReactLink>
       <Spacer />
       <HStack>
         <Route render={({ history }) => <AppSearch history={history} />} />
-        <Link as={ReactLink} to="/cart">
+        <ReactLink as={Link} to="/cart">
           <IconButton
-            _focus={{ borderColor: "primary" }}
+            _hover={{ bgColor: "pblue", color: "white" }}
             size="lg"
             isRound="true"
             icon={<FaShoppingCart />}
           />
-        </Link>
+        </ReactLink>
 
         {user ? (
           <Fragment>
@@ -76,7 +76,7 @@ const AppHeader = () => {
               >
                 {user.name}
               </MenuButton>
-              <MenuList bg="primary" minW="200">
+              <MenuList bg="warning" minW="200">
                 {user && user.role !== "admin" ? (
                   <MenuItem as={ReactLink} to="/orders/me">
                     Orders
@@ -99,16 +99,24 @@ const AppHeader = () => {
         ) : (
           !loading && (
             <Fragment>
-              <Link as={ReactLink} to="/login">
-                <Button variant="solid" bg="primary">
-                  <Text fontSize="xs">Login</Text>
+              <ReactLink as={Link} to="/login">
+                <Button
+                  variant="solid"
+                  bg="transparent"
+                  _hover={{ bgColor: "warning", opacity: 0.8 }}
+                >
+                  Login
                 </Button>
-              </Link>
-              <Link as={ReactLink} to="/register">
-                <Button variant="solid" bg="highlight">
-                  <Text fontSize="xs">Register</Text>
+              </ReactLink>
+              <ReactLink as={Link} to="/register">
+                <Button
+                  variant="solid"
+                  bg="transparent"
+                  _hover={{ bgColor: "warning", opacity: 0.8 }}
+                >
+                  Register
                 </Button>
-              </Link>
+              </ReactLink>
             </Fragment>
           )
         )}

@@ -3,11 +3,12 @@ import { extendTheme } from "@chakra-ui/react";
 
 export const myChakraTheme = extendTheme({
   colors: {
-    primary: "#00C9A7",
-    secondary: "#845EC2",
-    highlight: "#B39CD0",
-    warning: "#D69E2E",
-    danger: "#E53E3E",
+    celadon: "#A9E5BB",
+    mchamp: "#fcf6b1",
+    pblue: "#23395B",
+    darkpurple: "#2D1E2F",
+    warning: "#F7B32B",
+    danger: "#6D213C",
   },
   components: {},
 });

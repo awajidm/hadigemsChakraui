@@ -1,4 +1,5 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useEffect, useState } from "react";
+import { Link as ReactLink } from "react-router-dom";
 
 //redux imports
 import { useDispatch, useSelector } from "react-redux";
@@ -6,17 +7,43 @@ import { getProductDetails, clearErrors } from "../../actions/productActions";
 
 //Chakra ui
 
-import { Heading, Box, Stack, Text, useToast, VStack } from "@chakra-ui/react";
+import {
+  Link,
+  Box,
+  Stack,
+  Text,
+  useToast,
+  VStack,
+  Wrap,
+  WrapItem,
+  Divider,
+  HStack,
+  Input,
+  IconButton,
+  Button,
+} from "@chakra-ui/react";
+
+import BeautyStars from "beauty-stars";
+
+import {
+  FaCaretRight,
+  FaCaretLeft,
+  FaExpand,
+  FaCompress,
+  FaMinus,
+  FaPlus,
+} from "react-icons/fa";
 
 import Carousel from "react-gallery-carousel";
+import "react-gallery-carousel/dist/index.css";
 
 //app components
 import Loader from "../Layout/AppLoader";
 import MetaData from "../Layout/MetaData";
 
-import "react-gallery-carousel/dist/index.css";
-
 const ProductDetails = ({ match }) => {
+  const [quantity, setQuantity] = useState(1);
+
   const dispatch = useDispatch();
   const toast = useToast();
 
@@ -37,26 +64,31 @@ const ProductDetails = ({ match }) => {
     dispatch(getProductDetails(match.params.id));
   }, [dispatch, error, match.params.id, toast]);
 
-  // const handleAdd = () => {
-  //   if (qty >= product.stock) {
-  //     return alert.error(`only ${product.stock} item is avaiable!!`);
-  //   } else {
-  //     setQty(qty++);
-  //   }
-  // };
+  const increaseQty = () => {
+    const count = document.querySelector(".count");
 
-  // const handleRemove = () => {
-  //   if (qty <= 1) {
-  //     return alert.error(`You can not choose less then 1`);
-  //   } else {
-  //     setQty(qty--);
-  //   }
-  // };
-  const images =
-    product.images &&
-    product.images.map((image) => ({
+    if (count.valueAsNumber >= product.stock) return;
+
+    const qty = count.valueAsNumber + 1;
+    setQuantity(qty);
+  };
+
+  const decreaseQty = () => {
+    const count = document.querySelector(".count");
+
+    if (count.valueAsNumber <= 1) return;
+
+    const qty = count.valueAsNumber - 1;
+    setQuantity(qty);
+  };
+
+  let images = [];
+  if (product.images) {
+    images = product.images.map((image) => ({
       src: `${image.url}`,
     }));
+  }
+
   return (
     <Fragment>
       {loading ? (
@@ -64,49 +96,165 @@ const ProductDetails = ({ match }) => {
       ) : (
         <Fragment>
           <MetaData title={product.name} />
-          <Stack direction="row" justify="center">
-            <VStack justify="center" align="center" width="50vw">
-              <Heading size="sm">Images will go here</Heading>
-              <Carousel images={images} style={{ height: 800, width: 500 }} />
-              {/* {product &&
-                product.images.map((image) => (
-                  <Image
-                    src={product.image.url}
-                    alt={product.name}
-                    width="100%"
-                    height="200px"
-                    mx="2"
-                  />
-                ))} */}
+          <Stack direction="row" justify="center" mt={5}>
+            <VStack justify="center" align="center" mx={20}>
+              <Carousel
+                images={images}
+                hasMediaButton={false}
+                hasIndexBoard={false}
+                style={{ width: "350px" }}
+                leftIcon={
+                  <Text
+                    fontSize="50px"
+                    color="white"
+                    _hover={{ color: "warning" }}
+                  >
+                    <FaCaretLeft />
+                  </Text>
+                }
+                rightIcon={
+                  <Text
+                    fontSize="50px"
+                    color="white"
+                    _hover={{ color: "warning" }}
+                  >
+                    <FaCaretRight />
+                  </Text>
+                }
+                maxIcon={
+                  <Text
+                    fontSize="40px"
+                    m={2}
+                    color="white"
+                    _hover={{ color: "warning" }}
+                  >
+                    <FaExpand />
+                  </Text>
+                }
+                minIcon={
+                  <Text
+                    fontSize="40px"
+                    m={2}
+                    color="white"
+                    _hover={{ color: "warning" }}
+                  >
+                    <FaCompress />
+                  </Text>
+                }
+                thumbnailWidth="40px"
+                thumbnailHeight="40px"
+              />
             </VStack>
-            <VStack align="start" width="50vw">
-              <Box>
-                <Text>Name</Text>
-                <Text textColor="red.400">{product.name}</Text>
-              </Box>
-              <Box>
-                <Text>Prince</Text>
-                <Text textColor="red.400">{product.price}</Text>
-              </Box>
-              <Text textColor="primary" fontSize="20px">
-                Product Details
+            <VStack align="start" width="50vw" mx={20}>
+              <Text fontSize="32px" fontFamily="unset" textColor="darkpurple">
+                {product.name}
               </Text>
-              <Box d="flex" flexWrap="wrap">
-                {product.productInfo &&
-                  product.productInfo.map((info) => (
-                    <Box
-                      p={3}
-                      m={2}
-                      fontSize="12px"
-                      boxShadow="0px 0px 10px gray"
-                    >
-                      <Text textColor="secondary">{info.title}</Text>
-                      <Text>{info.desc}</Text>
-                    </Box>
-                  ))}
+              <Text fontSize="12px" fontFamily="unset" textColor="gray.400">
+                Product # {product._id}
+              </Text>
+              <Divider />
+              <Box>
+                <BeautyStars
+                  value={product.ratings}
+                  size={12}
+                  gap={6}
+                  activeColor="#6D213C"
+                />
+                <Link as={ReactLink}>{product.numOfReviews} reviews </Link>
               </Box>
+
+              <Text
+                fontSize="32px"
+                fontFamily="unset"
+                textColor="danger"
+                mt={3}
+              >
+                Rs.{product.price}/-
+              </Text>
+
+              <Divider />
+              <HStack spacing={5}>
+                <IconButton
+                  onClick={decreaseQty}
+                  bgColor="danger"
+                  color="white"
+                  _hover={{ bgColor: "pblue" }}
+                  size="xs"
+                  icon={<FaMinus fontSize="12px" />}
+                />
+                <Input
+                  type="number"
+                  className="count"
+                  size="lg"
+                  width="40px"
+                  p={1}
+                  isReadOnly={true}
+                  value={quantity}
+                />
+                <IconButton
+                  onClick={increaseQty}
+                  color="white"
+                  bgColor="pblue"
+                  _hover={{ bgColor: "pblue" }}
+                  size="xs"
+                  icon={<FaPlus fontSize="12px" />}
+                />
+                <Button
+                  _hover={{ opacity: 0.7 }}
+                  color="white"
+                  bgColor="warning"
+                  borderRadius="50px"
+                >
+                  Add to Cart
+                </Button>
+              </HStack>
+
+              <Box>
+                <Text fontSize="20px" fontFamily="fantasy">
+                  Description
+                </Text>
+                {product.description}
+              </Box>
+
+              <HStack>
+                <Text fontSize="20px" fontFamily="fantasy">
+                  Status:
+                </Text>
+                <Text
+                  fontSize="20px"
+                  textColor={product.stock > 0 ? "green.400" : "danger"}
+                >
+                  {product.stock > 0 ? `In Stock` : `Out of Stock`}
+                </Text>
+              </HStack>
+
+              <Divider />
+              <Button
+                _hover={{ bgColor: "pblue" }}
+                color="white"
+                bgColor="warning"
+                borderRadius="50px"
+              >
+                Submit Review
+              </Button>
             </VStack>
           </Stack>
+          <Box m={20}>
+            <Text fontSize="20px" fontFamily="fantasy">
+              Product Details
+            </Text>
+            <Wrap>
+              {product.productInfo &&
+                product.productInfo.map((info) => (
+                  <WrapItem>
+                    <Box boxShadow="0px 0px 10px gray" p={3} borderRadius="md">
+                      <Text>{info.title}</Text>
+                      <Text textColor="pblue">{info.desc}</Text>
+                    </Box>
+                  </WrapItem>
+                ))}
+            </Wrap>
+          </Box>
         </Fragment>
       )}
     </Fragment>

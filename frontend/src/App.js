@@ -6,7 +6,7 @@ import ProtectedRoute from "./components/routes/ProtectedRoute";
 import AppHeader from "./components/Layout/AppHeader";
 import AppFooter from "./components/Layout/AppFooter";
 
-import Home from "./components/Home";
+import Home from "./components/Home/Home";
 import ProductDetails from "./components/Product/ProductDetails";
 import Login from "./components/User/Login";
 import Register from "./components/User/Register";

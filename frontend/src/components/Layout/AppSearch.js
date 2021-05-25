@@ -21,9 +21,9 @@ const AppSearch = ({ history }) => {
       <Input
         pr="4.5rem"
         placeholder="Search Product"
-        variant="outline"
-        _hover={{ borderColor: "primary" }}
-        _focus={{ borderColor: "primary" }}
+        variant="flushed"
+        _hover={{ borderColor: "warning" }}
+        _focus={{ borderColor: "warning" }}
         value={keyword}
         onChange={(e) => setKeyword(e.target.value)}
       />
@@ -31,7 +31,7 @@ const AppSearch = ({ history }) => {
         <IconButton
           isRound="true"
           size="sm"
-          _focus={{ borderColor: "primary" }}
+          _hover={{ bgColor: "pblue", color: "white" }}
           onClick={searchHandler}
           icon={<FaSearch />}
         />

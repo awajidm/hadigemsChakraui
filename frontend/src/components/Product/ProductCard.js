@@ -18,11 +18,12 @@ const ProductCard = ({ product, category }) => {
   return (
     <Fragment>
       <Box
-        maxW="sm"
         borderWidth="1px"
         borderRadius="lg"
         overflow="hidden"
         boxShadow="2xl"
+        m={5}
+        width="250px"
       >
         <ReactLink to={`/product/${product._id}`}>
           <Image
@@ -34,41 +35,62 @@ const ProductCard = ({ product, category }) => {
         </ReactLink>
 
         <Box p="4">
-          <Heading
+          <Box
             lineHeight="tight"
-            fontSize="20"
-            fontFamily="cursive"
-            textColor="red.600"
+            fontSize="16px"
+            fontFamily="inherit"
+            textColor="darkpurple"
             isTruncated
           >
             <ReactLink to={`/product/${product._id}`}>{product.name}</ReactLink>
+          </Box>
+          <Heading
+            lineHeight="tight"
+            fontSize="18px"
+            fontFamily="inherit"
+            textColor="pblue"
+            isTruncated
+          >
+            Rs.{product.price}/-
           </Heading>
-          <Box>
-            <Box
-              as="span"
-              color="gray.600"
-              fontSize="lg"
-              fontWeight="bold"
-              mr="auto"
+          <Box my="5px">
+            <BeautyStars
+              value={product.ratings}
+              size={12}
+              gap={6}
+              activeColor="#6D213C"
+            />
+          </Box>
+          <Stack
+            direction="row"
+            align="center"
+            justify="space-evenly"
+            mt="20px"
+          >
+            <IconButton
+              _hover={{ bgColor: "pblue", color: "white" }}
+              size="sm"
+              isRound="true"
+              icon={<FaShoppingCart />}
+            />
+            <Button
+              variant="solid"
+              bgGradient="linear(to-r, darkpurple, warning)"
+              _hover={{
+                bgGradient: "linear(to-r, darkpurple, danger)",
+              }}
+              color="white"
+              size="sm"
+              isFullWidth
             >
-              Rs.{product.price}/-
-            </Box>
-            <BeautyStars value={product.rating} size={10} gap="5" />
-          </Box>
-          <Box>
-            {product.tags.map((tag) => (
-              <Badge borderRadius="full" px="2" colorScheme="teal">
-                {tag}
-              </Badge>
-            ))}
-          </Box>
-
-          <Stack direction="row" align="center" justify="space-evenly">
-            <IconButton icon={<FaShoppingCart />} />
-            <Button variant="solid" colorScheme="teal" size="sm">
               Buy
             </Button>
-            <IconButton icon={<FaHeart />} />
+            <IconButton
+              _hover={{ bgColor: "pblue", color: "white" }}
+              size="sm"
+              isRound="true"
+              icon={<FaHeart />}
+            />
           </Stack>
         </Box>
       </Box>

@@ -1,10 +1,10 @@
-import { Spin } from "antd";
+import { Spinner, Box } from "@chakra-ui/react";
 
 const AppLoader = () => {
   return (
-    <div className="app-loader">
-      <Spin />
-    </div>
+    <Box width="100vw" d="flex" justifyContent="center" alignItems="center">
+      <Spinner size="xl" />
+    </Box>
   );
 };
 
