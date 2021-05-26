@@ -8,7 +8,7 @@ import {
   Image,
   IconButton,
   Button,
-  Text,
+  Box,
   Avatar,
   Link,
   Menu,
@@ -17,6 +17,9 @@ import {
   MenuItem,
   Spacer,
   useToast,
+  Tag,
+  TagLeftIcon,
+  TagLabel,
 } from "@chakra-ui/react";
 import { FaShoppingCart, FaSignOutAlt, FaCaretDown } from "react-icons/fa";
 
@@ -29,6 +32,7 @@ const AppHeader = () => {
   const toast = useToast();
 
   const { user, loading } = useSelector((state) => state.auth);
+  const { cartItems } = useSelector((state) => state.cart);
 
   const logoutHandler = () => {
     dispatch(logout());
@@ -49,12 +53,12 @@ const AppHeader = () => {
       <HStack>
         <Route render={({ history }) => <AppSearch history={history} />} />
         <ReactLink as={Link} to="/cart">
-          <IconButton
-            _hover={{ bgColor: "pblue", color: "white" }}
-            size="lg"
-            isRound="true"
-            icon={<FaShoppingCart />}
-          />
+          <Tag _hover={{ bgColor: "pblue", color: "white" }}>
+            <TagLeftIcon boxSize="20px" as={FaShoppingCart} />
+            <TagLabel fontSize="15px" color="warning">
+              {cartItems.length}
+            </TagLabel>
+          </Tag>
         </ReactLink>
 
         {user ? (

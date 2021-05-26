@@ -6,6 +6,9 @@ import ProtectedRoute from "./components/routes/ProtectedRoute";
 import AppHeader from "./components/Layout/AppHeader";
 import AppFooter from "./components/Layout/AppFooter";
 
+import Cart from "./components/Cart/Cart";
+import Shipping from "./components/Cart/Shipping";
+
 import Home from "./components/Home/Home";
 import ProductDetails from "./components/Product/ProductDetails";
 import Login from "./components/User/Login";
@@ -29,6 +32,10 @@ function App() {
       <AppHeader />
       <Route path="/" component={Home} exact />
       <Route path="/product/:id" component={ProductDetails} exact />
+
+      <Route path="/cart" component={Cart} exact />
+      <ProtectedRoute path="/shipping" component={Shipping} />
+
       <Route path="/search/:keyword" component={Home} />
       <Route path="/login" component={Login} />
       <Route path="/register" component={Register} />

@@ -5,6 +5,8 @@ import { Link as ReactLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getProductDetails, clearErrors } from "../../actions/productActions";
 
+import { addItemToCart } from "../../actions/cartActions";
+
 //Chakra ui
 
 import {
@@ -63,6 +65,16 @@ const ProductDetails = ({ match }) => {
     }
     dispatch(getProductDetails(match.params.id));
   }, [dispatch, error, match.params.id, toast]);
+
+  const addToCart = () => {
+    dispatch(addItemToCart(match.params.id, quantity));
+    toast({
+      description: "Added to the cart",
+      status: "success",
+      duration: 9000,
+      isClosable: true,
+    });
+  };
 
   const increaseQty = () => {
     const count = document.querySelector(".count");
@@ -160,7 +172,9 @@ const ProductDetails = ({ match }) => {
                   gap={6}
                   activeColor="#6D213C"
                 />
-                <Link as={ReactLink}>{product.numOfReviews} reviews </Link>
+                <Link as={ReactLink} to={`/product/reviews`}>
+                  {product.numOfReviews} reviews
+                </Link>
               </Box>
 
               <Text
@@ -186,8 +200,7 @@ const ProductDetails = ({ match }) => {
                   type="number"
                   className="count"
                   size="lg"
-                  width="40px"
-                  p={1}
+                  width="50px"
                   isReadOnly={true}
                   value={quantity}
                 />
@@ -204,6 +217,8 @@ const ProductDetails = ({ match }) => {
                   color="white"
                   bgColor="warning"
                   borderRadius="50px"
+                  onClick={addToCart}
+                  isDisabled={product.stock === 0}
                 >
                   Add to Cart
                 </Button>
@@ -239,14 +254,21 @@ const ProductDetails = ({ match }) => {
               </Button>
             </VStack>
           </Stack>
-          <Box m={20}>
-            <Text fontSize="20px" fontFamily="fantasy">
-              Product Details
+          <Stack
+            align="center"
+            justify="center"
+            mt={10}
+            boxShadow="0px 0px 10px gray"
+            p={3}
+            borderRadius="md"
+          >
+            <Text fontSize="25px" fontFamily="fantasy">
+              Product Detail
             </Text>
             <Wrap>
               {product.productInfo &&
                 product.productInfo.map((info) => (
-                  <WrapItem>
+                  <WrapItem key={info.title}>
                     <Box boxShadow="0px 0px 10px gray" p={3} borderRadius="md">
                       <Text>{info.title}</Text>
                       <Text textColor="pblue">{info.desc}</Text>
@@ -254,7 +276,7 @@ const ProductDetails = ({ match }) => {
                   </WrapItem>
                 ))}
             </Wrap>
-          </Box>
+          </Stack>
         </Fragment>
       )}
     </Fragment>
