@@ -1,18 +1,19 @@
 import React, { Fragment, useState, useEffect } from "react";
 
 import {
-  Box,
+  Container,
   Heading,
   InputGroup,
   Input,
   InputLeftElement,
   Button,
-  VStack,
-  HStack,
+  Stack,
+  Flex,
+  Text,
   Spacer,
   Avatar,
 } from "@chakra-ui/react";
-import { FaEnvelope, FaLock } from "react-icons/fa";
+import { FaEnvelope, FaLock, FaUser } from "react-icons/fa";
 
 import MetaData from "../Layout/MetaData";
 
@@ -77,22 +78,29 @@ const Register = ({ history }) => {
   return (
     <Fragment>
       <MetaData title={"Register User"} />
-      <VStack>
-        <Heading textAlign="center" p="30" fontFamily="mono" fontWeight="light">
+      <Container justify="center" mt={5} bgColor="darkpurple" p={5}>
+        <Heading
+          textAlign="center"
+          fontSize="32px"
+          fontFamily="unset"
+          textColor="white"
+          my={5}
+        >
           Register
         </Heading>
-        <Box w={["80vw", "60vw", "40vw"]}>
-          <form
-            className="form"
-            onSubmit={submitHandler}
-            encType="multipart/form-data"
-          >
-            <InputGroup mb="5">
+        <form
+          className="form"
+          onSubmit={submitHandler}
+          encType="multipart/form-data"
+        >
+          <Stack spacing={5} color="white">
+            <InputGroup>
               <InputLeftElement
                 pointerEvents="none"
-                children={<FaEnvelope color="highlight" />}
+                children={<FaUser color="#F7B32B" />}
               />
               <Input
+                focusBorderColor="warning"
                 placeholder="Enter Name"
                 type="name"
                 name="name"
@@ -100,12 +108,13 @@ const Register = ({ history }) => {
                 onChange={onChange}
               />
             </InputGroup>
-            <InputGroup mb="5">
+            <InputGroup>
               <InputLeftElement
                 pointerEvents="none"
-                children={<FaEnvelope color="highlight" />}
+                children={<FaEnvelope color="#F7B32B" />}
               />
               <Input
+                focusBorderColor="warning"
                 placeholder="Enter Email"
                 type="email"
                 name="email"
@@ -113,12 +122,13 @@ const Register = ({ history }) => {
                 onChange={onChange}
               />
             </InputGroup>
-            <InputGroup mb="5">
+            <InputGroup>
               <InputLeftElement
                 pointerEvents="none"
-                children={<FaLock color="highlight" />}
+                children={<FaLock color="#F7B32B" />}
               />
               <Input
+                focusBorderColor="warning"
                 type="password"
                 placeholder="Enter Password"
                 value={password}
@@ -126,32 +136,38 @@ const Register = ({ history }) => {
                 name="password"
               />
             </InputGroup>
-            <p>Choose Avatar</p>
-            <HStack>
+            <Text color="warning">Choose Avatar</Text>
+            <Flex px={5}>
               <Avatar size="md" src={avatarPreview} name="avatar preview" />
-
               <Spacer />
               <Input
+                focusBorderColor="warning"
                 name="avatar"
                 type="file"
                 accept="images/*"
                 onChange={onChange}
+                w="100px"
+                p="0px"
               />
-            </HStack>
-            <HStack>
-              <Spacer />
-              <Button
-                type="submit"
-                variant="solid"
-                bg="primary"
-                disabled={loading ? true : false}
-              >
-                Register
-              </Button>
-            </HStack>
-          </form>
-        </Box>
-      </VStack>
+            </Flex>
+            <Button
+              variant="solid"
+              bgGradient="linear(to-t, warning, danger)"
+              _hover={{
+                bgGradient: "linear(to-r, danger, warning)",
+              }}
+              color="white"
+              size="lg"
+              isFullWidth
+              type="submit"
+              isLoading={loading ? true : false}
+              loadingText="Please wait"
+            >
+              Register
+            </Button>
+          </Stack>
+        </form>
+      </Container>
     </Fragment>
   );
 };

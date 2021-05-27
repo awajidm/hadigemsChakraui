@@ -2,15 +2,14 @@ import React, { Fragment, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import {
-  Box,
+  Container,
   Heading,
   InputGroup,
   Input,
   InputLeftElement,
   Button,
-  VStack,
-  HStack,
-  Spacer,
+  Stack,
+  Text,
 } from "@chakra-ui/react";
 import { FaEnvelope, FaLock } from "react-icons/fa";
 
@@ -56,52 +55,68 @@ const Login = ({ history, location }) => {
       ) : (
         <Fragment>
           <MetaData title={"login"} />
-          <VStack>
+          <Container justify="center" mt={5} bgColor="darkpurple" p={5}>
             <Heading
               textAlign="center"
-              p="30"
-              fontFamily="mono"
-              fontWeight="light"
+              fontFamily="unset"
+              fontSize="32px"
+              textColor="white"
+              my={5}
             >
               Login
             </Heading>
-            <Box w={["80vw", "60vw", "40vw"]}>
-              <form className="form" onSubmit={submitHandler}>
-                <InputGroup mb="5">
+            <form className="form" onSubmit={submitHandler}>
+              <Stack spacing={5} color="white">
+                <InputGroup>
                   <InputLeftElement
                     pointerEvents="none"
-                    children={<FaEnvelope color="highlight" />}
+                    children={<FaEnvelope color="#F7B32B" />}
                   />
                   <Input
+                    focusBorderColor="warning"
                     placeholder="Enter Email"
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                   />
                 </InputGroup>
-                <InputGroup mb="5">
+                <InputGroup>
                   <InputLeftElement
                     pointerEvents="none"
-                    children={<FaLock color="highlight" />}
+                    children={<FaLock color="#F7B32B" />}
                   />
                   <Input
+                    focusBorderColor="warning"
                     type="password"
                     placeholder="Enter Password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                   />
                 </InputGroup>
-                <HStack>
-                  <Link to="/password/forgot">Forgot Password?</Link>
-                  <Spacer />
-                  <Button type="submit" variant="solid" bg="primary">
-                    Login
-                  </Button>
-                </HStack>
-                <Link to="/register">Register</Link>
-              </form>
-            </Box>
-          </VStack>
+                <Link to="/password/forgot">
+                  <Text color="warning">Forgot Password?</Text>
+                </Link>
+                <Button
+                  variant="solid"
+                  bgGradient="linear(to-t, warning, danger)"
+                  _hover={{
+                    bgGradient: "linear(to-r, danger, warning)",
+                  }}
+                  color="white"
+                  size="lg"
+                  isFullWidth
+                  type="submit"
+                  isLoading={loading ? true : false}
+                  loadingText="Please wait"
+                >
+                  Login
+                </Button>
+                <Link to="/register">
+                  <Text color="warning">Register</Text>
+                </Link>
+              </Stack>
+            </form>
+          </Container>
         </Fragment>
       )}
     </Fragment>

@@ -21,7 +21,7 @@ exports.newProduct = catchAsyncErrors(async (req, res, next) => {
 
 //get all product /api/v1/products
 exports.getProducts = catchAsyncErrors(async (req, res, next) => {
-  const resPerPage = 4;
+  const resPerPage = 9;
   const dbProductCount = await Product.countDocuments();
 
   const apiFeature = new APIFeatures(
@@ -48,15 +48,28 @@ exports.getProducts = catchAsyncErrors(async (req, res, next) => {
   let products = await apiFeature.query;
   let filteredProdcutsCount = products.length;
 
+  let featuredProducts = products.filter((product) => product.isFeatured);
+  let featuredProdcutsCount = featuredProducts.length;
+  let premiumProducts = products.filter((product) => product.isPremium);
+  let premiumProductsCount = premiumProducts.length;
+  let onSaleProducts = products.filter((product) => product.onSale);
+  let onSaleProductsCount = onSaleProducts.length;
   apiFeature.pagination(resPerPage);
   products = await apiFeature.query;
+  featuredProdcuts = await apiFeature.query;
 
   res.status(200).json({
     success: true,
-    dbProductCount,
-    filteredProdcutsCount,
     resPerPage,
+    dbProductCount,
     products,
+    featuredProducts,
+    featuredProdcutsCount,
+    premiumProducts,
+    premiumProductsCount,
+    onSaleProducts,
+    onSaleProductsCount,
+    filteredProdcutsCount,
   });
 });
 

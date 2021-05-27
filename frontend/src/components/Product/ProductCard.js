@@ -44,15 +44,37 @@ const ProductCard = ({ product, category }) => {
           >
             <ReactLink to={`/product/${product._id}`}>{product.name}</ReactLink>
           </Box>
-          <Heading
-            lineHeight="tight"
-            fontSize="18px"
-            fontFamily="inherit"
-            textColor="pblue"
-            isTruncated
-          >
-            Rs.{product.price}/-
-          </Heading>
+          {product.salePrice ? (
+            <Stack direction="row" spacing={5}>
+              <Heading
+                lineHeight="tight"
+                fontSize="18px"
+                fontFamily="inherit"
+                textColor="danger"
+                textDecoration="line-through"
+              >
+                Rs.{product.price}/-
+              </Heading>
+              <Heading
+                lineHeight="tight"
+                fontSize="18px"
+                fontFamily="inherit"
+                textColor="green.500"
+              >
+                Rs.{product.salePrice}/-
+              </Heading>
+            </Stack>
+          ) : (
+            <Heading
+              lineHeight="tight"
+              fontSize="18px"
+              fontFamily="inherit"
+              textColor="pblue"
+              isTruncated
+            >
+              Rs.{product.price}/-
+            </Heading>
+          )}
           <Box my="5px">
             <BeautyStars
               value={product.ratings}

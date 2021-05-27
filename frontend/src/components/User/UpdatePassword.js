@@ -1,14 +1,13 @@
 import React, { Fragment, useState, useEffect } from "react";
 
 import {
-  Box,
   Heading,
   InputGroup,
   Input,
   InputLeftElement,
   Button,
-  VStack,
-  HStack,
+  Container,
+  Stack,
   useToast,
 } from "@chakra-ui/react";
 import { FaLock } from "react-icons/fa";
@@ -59,18 +58,25 @@ const UpdatePassword = ({ history }) => {
   return (
     <Fragment>
       <MetaData title={"Change Password"} />
-      <VStack>
-        <Heading textAlign="center" p="30" fontFamily="mono" fontWeight="light">
+      <Container justify="center" mt={5} bgColor="darkpurple" p={5}>
+        <Heading
+          textAlign="center"
+          fontSize="32px"
+          fontFamily="unset"
+          textColor="white"
+          my={5}
+        >
           Change Password
         </Heading>
-        <Box w={["80vw", "60vw", "40vw"]}>
-          <form className="form" onSubmit={submitHandler}>
-            <InputGroup mb="5">
+        <form className="form" onSubmit={submitHandler}>
+          <Stack spacing={5} color="white">
+            <InputGroup>
               <InputLeftElement
                 pointerEvents="none"
-                children={<FaLock color="highlight" />}
+                children={<FaLock color="#F7B32B" />}
               />
               <Input
+                focusBorderColor="warning"
                 type="password"
                 placeholder="Enter Old Password"
                 value={oldPassword}
@@ -78,12 +84,13 @@ const UpdatePassword = ({ history }) => {
                 name="password"
               />
             </InputGroup>
-            <InputGroup mb="5">
+            <InputGroup>
               <InputLeftElement
                 pointerEvents="none"
-                children={<FaLock color="highlight" />}
+                children={<FaLock color="#F7B32B" />}
               />
               <Input
+                focusBorderColor="warning"
                 type="password"
                 placeholder="Enter New Password"
                 value={password}
@@ -92,20 +99,24 @@ const UpdatePassword = ({ history }) => {
               />
             </InputGroup>
 
-            <HStack>
-              <Button
-                isFullWidth
-                type="submit"
-                variant="solid"
-                bg="primary"
-                isLoading={loading ? true : false}
-              >
-                Update Password
-              </Button>
-            </HStack>
-          </form>
-        </Box>
-      </VStack>
+            <Button
+              variant="solid"
+              bgGradient="linear(to-t, warning, danger)"
+              _hover={{
+                bgGradient: "linear(to-r, danger, warning)",
+              }}
+              color="white"
+              size="lg"
+              isFullWidth
+              type="submit"
+              isLoading={loading ? true : false}
+              loadingText="Please wait"
+            >
+              Update Password
+            </Button>
+          </Stack>
+        </form>
+      </Container>
     </Fragment>
   );
 };

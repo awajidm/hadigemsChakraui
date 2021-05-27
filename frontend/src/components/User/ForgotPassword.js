@@ -7,8 +7,8 @@ import {
   Input,
   InputLeftElement,
   Button,
-  VStack,
-  HStack,
+  Stack,
+  Container,
   useToast,
 } from "@chakra-ui/react";
 import { FaEnvelopeOpenText, FaArrowRight } from "react-icons/fa";
@@ -54,18 +54,25 @@ const ForgotPassword = () => {
   return (
     <Fragment>
       <MetaData title={"Change Password"} />
-      <VStack>
-        <Heading textAlign="center" p="30" fontFamily="mono" fontWeight="light">
-          Forgot Password
+      <Container justify="center" mt={5} bgColor="darkpurple" p={5}>
+        <Heading
+          textAlign="center"
+          fontSize="32px"
+          fontFamily="unset"
+          textColor="white"
+          my={5}
+        >
+          Forget Password
         </Heading>
-        <Box w={["80vw", "60vw", "40vw"]}>
-          <form className="form" onSubmit={submitHandler}>
-            <InputGroup mb="5">
+        <form className="form" onSubmit={submitHandler}>
+          <Stack spacing={5} color="white">
+            <InputGroup>
               <InputLeftElement
                 pointerEvents="none"
-                children={<FaEnvelopeOpenText color="highlight" />}
+                children={<FaEnvelopeOpenText color="#F7B32B" />}
               />
               <Input
+                focusBorderColor="warning"
                 type="email"
                 placeholder="Enter Email"
                 value={email}
@@ -73,21 +80,25 @@ const ForgotPassword = () => {
               />
             </InputGroup>
 
-            <HStack>
-              <Button
-                isFullWidth
-                type="submit"
-                variant="solid"
-                bg="primary"
-                isLoading={loading ? true : false}
-                rightIcon={<FaArrowRight color="highlight" />}
-              >
-                Send Email
-              </Button>
-            </HStack>
-          </form>
-        </Box>
-      </VStack>
+            <Button
+              variant="solid"
+              bgGradient="linear(to-t, warning, danger)"
+              _hover={{
+                bgGradient: "linear(to-r, danger, warning)",
+              }}
+              color="white"
+              size="lg"
+              isFullWidth
+              type="submit"
+              isLoading={loading ? true : false}
+              loadingText="Please wait"
+              rightIcon={<FaArrowRight color="white" />}
+            >
+              Send Email
+            </Button>
+          </Stack>
+        </form>
+      </Container>
     </Fragment>
   );
 };

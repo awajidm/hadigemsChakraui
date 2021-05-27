@@ -1,14 +1,15 @@
 import React, { Fragment, useState, useEffect } from "react";
 
 import {
-  Box,
+  Container,
+  Flex,
   Heading,
   InputGroup,
   Input,
   InputLeftElement,
   Button,
-  VStack,
-  HStack,
+  Stack,
+  Text,
   Spacer,
   Avatar,
   useToast,
@@ -86,22 +87,29 @@ const UpdateProfile = ({ history }) => {
   return (
     <Fragment>
       <MetaData title={"Update Profile"} />
-      <VStack>
-        <Heading textAlign="center" p="30" fontFamily="mono" fontWeight="light">
+      <Container justify="center" mt={5} bgColor="darkpurple" p={5}>
+        <Heading
+          textAlign="center"
+          fontSize="32px"
+          fontFamily="unset"
+          textColor="white"
+          my={5}
+        >
           Update Profile
         </Heading>
-        <Box w={["80vw", "60vw", "40vw"]}>
-          <form
-            className="form"
-            onSubmit={submitHandler}
-            encType="multipart/form-data"
-          >
-            <InputGroup mb="5">
+        <form
+          className="form"
+          onSubmit={submitHandler}
+          encType="multipart/form-data"
+        >
+          <Stack spacing={5} color="white">
+            <InputGroup>
               <InputLeftElement
                 pointerEvents="none"
-                children={<FaUser color="highlight" />}
+                children={<FaUser color="#F7B32B" />}
               />
               <Input
+                focusBorderColor="warning"
                 placeholder="Enter Name"
                 type="name"
                 name="name"
@@ -109,12 +117,13 @@ const UpdateProfile = ({ history }) => {
                 onChange={(e) => setName(e.target.value)}
               />
             </InputGroup>
-            <InputGroup mb="5">
+            <InputGroup>
               <InputLeftElement
                 pointerEvents="none"
-                children={<FaEnvelope color="highlight" />}
+                children={<FaEnvelope color="#F7B32B" />}
               />
               <Input
+                focusBorderColor="warning"
                 placeholder="Enter Email"
                 type="email"
                 name="email"
@@ -122,33 +131,39 @@ const UpdateProfile = ({ history }) => {
                 onChange={(e) => setEmail(e.target.value)}
               />
             </InputGroup>
-            <p>Choose Avatar</p>
-            <HStack>
+            <Text color="warning">Choose Avatar</Text>
+            <Flex px={5}>
               <Avatar size="md" src={avatarPreview} name="avatar preview" />
-
               <Spacer />
               <Input
+                focusBorderColor="warning"
                 name="avatar"
                 type="file"
                 accept="images/*"
                 onChange={onChange}
+                w="100px"
+                p="0px"
               />
-            </HStack>
-            <HStack>
-              <Spacer />
-              <Button
-                type="submit"
-                variant="solid"
-                bg="primary"
-                isLoading={loading ? true : false}
-                spinnerPlacement="end"
-              >
-                Update
-              </Button>
-            </HStack>
-          </form>
-        </Box>
-      </VStack>
+            </Flex>
+
+            <Button
+              variant="solid"
+              bgGradient="linear(to-t, warning, danger)"
+              _hover={{
+                bgGradient: "linear(to-r, danger, warning)",
+              }}
+              color="white"
+              size="lg"
+              isFullWidth
+              type="submit"
+              isLoading={loading ? true : false}
+              loadingText="Please wait"
+            >
+              Update
+            </Button>
+          </Stack>
+        </form>
+      </Container>
     </Fragment>
   );
 };

@@ -44,8 +44,9 @@ const Profile = () => {
                 as={ReactLink}
                 to="/me/update"
                 variant="solid"
-                bg="secondary"
+                bg="celadon"
                 isFullWidth
+                _hover={{ bgColor: "celadon", opacity: 0.9 }}
               >
                 Edit Profile
               </Button>
@@ -76,6 +77,7 @@ const Profile = () => {
                     to="/profile/update"
                     variant="solid"
                     bg="danger"
+                    _hover={{ bgColor: "danger", opacity: 0.9 }}
                     isFullWidth
                     mb={4}
                   >
@@ -89,6 +91,7 @@ const Profile = () => {
                   variant="solid"
                   bg="warning"
                   isFullWidth
+                  _hover={{ bgColor: "warning", opacity: 0.9 }}
                 >
                   Change Password
                 </Button>

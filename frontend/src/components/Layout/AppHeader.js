@@ -69,6 +69,7 @@ const AppHeader = () => {
                 minW="200px"
                 bg="transparent"
                 _active={{ bg: "transparent" }}
+                _hover={{ bg: "warning" }}
                 leftIcon={
                   <Avatar
                     size="sm"

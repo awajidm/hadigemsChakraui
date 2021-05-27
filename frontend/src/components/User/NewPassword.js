@@ -7,8 +7,8 @@ import {
   Input,
   InputLeftElement,
   Button,
-  VStack,
-  HStack,
+  Container,
+  Stack,
   useToast,
 } from "@chakra-ui/react";
 import { FaLock, FaPassport } from "react-icons/fa";
@@ -62,16 +62,22 @@ const NewPassword = ({ history, match }) => {
   return (
     <Fragment>
       <MetaData title={"New Password Reset"} />
-      <VStack>
-        <Heading textAlign="center" p="30" fontFamily="mono" fontWeight="light">
-          Reset Password
+      <Container justify="center" mt={5} bgColor="darkpurple" p={5}>
+        <Heading
+          textAlign="center"
+          fontSize="32px"
+          fontFamily="unset"
+          textColor="white"
+          my={5}
+        >
+          New Password
         </Heading>
-        <Box w={["80vw", "60vw", "40vw"]}>
-          <form className="form" onSubmit={submitHandler}>
-            <InputGroup mb="5">
+        <form className="form" onSubmit={submitHandler}>
+          <Stack spacing={5} color="white">
+            <InputGroup>
               <InputLeftElement
                 pointerEvents="none"
-                children={<FaLock color="highlight" />}
+                children={<FaLock color="#F7B32B" />}
               />
               <Input
                 type="password"
@@ -80,10 +86,10 @@ const NewPassword = ({ history, match }) => {
                 onChange={(e) => setPassword(e.target.value)}
               />
             </InputGroup>
-            <InputGroup mb="5">
+            <InputGroup>
               <InputLeftElement
                 pointerEvents="none"
-                children={<FaPassport color="highlight" />}
+                children={<FaPassport color="#F7B32B" />}
               />
               <Input
                 type="password"
@@ -93,14 +99,22 @@ const NewPassword = ({ history, match }) => {
               />
             </InputGroup>
 
-            <HStack>
-              <Button isFullWidth type="submit" variant="solid" bg="primary">
-                Set Password
-              </Button>
-            </HStack>
-          </form>
-        </Box>
-      </VStack>
+            <Button
+              variant="solid"
+              bgGradient="linear(to-t, warning, danger)"
+              _hover={{
+                bgGradient: "linear(to-r, danger, warning)",
+              }}
+              color="white"
+              size="lg"
+              isFullWidth
+              type="submit"
+            >
+              Set Password
+            </Button>
+          </Stack>
+        </form>
+      </Container>
     </Fragment>
   );
 };

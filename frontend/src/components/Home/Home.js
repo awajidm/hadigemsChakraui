@@ -1,5 +1,8 @@
 import React, { useEffect, useState, Fragment } from "react";
 
+import { Carousel } from "3d-react-carousal";
+import ECarousel from "react-elastic-carousel";
+
 //app component imports
 import ProductCard from "../Product/ProductCard";
 import Apploader from "../Layout/AppLoader";
@@ -17,7 +20,9 @@ import {
   useToast,
   VStack,
   HStack,
-  Button,
+  Image,
+  Wrap,
+  WrapItem,
 } from "@chakra-ui/react";
 
 import { FaArrowRight } from "react-icons/fa";
@@ -31,6 +36,13 @@ const createSliderWithTooltip = Slider.createSliderWithTooltip;
 const Range = createSliderWithTooltip(Slider.Range);
 
 const Home = ({ match }) => {
+  let slides = [
+    <Image src="/images/1.jpg" alt="image1" height={400} width="100%" />,
+    <Image src="/images/2.jpg" alt="image2" height={400} width="100%" />,
+    <Image src="/images/3.jpg" alt="image3" height={400} width="100%" />,
+    <Image src="/images/4.jpg" alt="image4" height={400} width="100%" />,
+  ];
+
   const toast = useToast();
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -45,6 +57,9 @@ const Home = ({ match }) => {
     productsCount,
     resPerPage,
     filteredProdcutsCount,
+    featuredProducts,
+    premiumProducts,
+    onSaleProducts,
   } = useSelector((state) => state.products);
   const keyword = match.params.keyword;
 
@@ -77,11 +92,19 @@ const Home = ({ match }) => {
       {keyword ? (
         //TODO
         <Stack direction="row">
-          <VStack width="25vw" p={20}>
-            <Box width="20vw">
-              <Text mb={10} fontSize={20}>
-                Filter by Pirce
-              </Text>
+          <Stack width="25vw" p={20} spacing={10}>
+            <Heading
+              textAlign="center"
+              fontSize="32px"
+              fontFamily="fantasy"
+              textColor="darkpurple"
+            >
+              Filters
+            </Heading>
+            <Text fontSize={20} fontFamily="unset" textColor="danger">
+              Pirce
+            </Text>
+            <Box width="200px">
               <Range
                 marks={{
                   1: "1",
@@ -99,8 +122,17 @@ const Home = ({ match }) => {
                 onChange={(price) => setPrice(price)}
               />
             </Box>
-          </VStack>
-          <VStack spacing={4} align="center" justify="center">
+            <Text fontSize={20} fontFamily="unset" textColor="danger">
+              Categories
+            </Text>
+            <Text fontSize={20} fontFamily="unset" textColor="danger">
+              Ratings
+            </Text>
+            <Text fontSize={20} fontFamily="unset" textColor="danger">
+              Colors
+            </Text>
+          </Stack>
+          <Stack spacing={4} align="center" justify="center">
             <Heading
               textAlign="center"
               fontSize="32px"
@@ -109,76 +141,130 @@ const Home = ({ match }) => {
             >
               Search Results
             </Heading>
-            <HStack wrap="wrap">
+            <Wrap>
               {products &&
                 products.map((product) => (
-                  <ProductCard key={product._id} product={product} />
+                  <WrapItem>
+                    <ProductCard key={product._id} product={product} />
+                  </WrapItem>
                 ))}
-            </HStack>
-            <Box>
-              {resPerPage <= count && (
-                <Pagination
-                  totalSize={count}
-                  currentPage={currentPage}
-                  sizePerPage={resPerPage}
-                  changeCurrentPage={setCurrentPageNo}
-                />
-              )}
-            </Box>
-          </VStack>
+            </Wrap>
+            {resPerPage <= count && (
+              <Pagination
+                totalSize={count}
+                currentPage={currentPage}
+                sizePerPage={resPerPage}
+                changeCurrentPage={setCurrentPageNo}
+              />
+            )}
+          </Stack>
         </Stack>
       ) : (
         <Fragment>
-          <Heading
-            textAlign="center"
-            my="30px"
-            fontSize="32px"
-            fontFamily="fantasy"
-            textColor="darkpurple"
-          >
-            All Products
-          </Heading>
+          <Box my={10}>
+            <Carousel slides={slides} autoplay={true} interval={3000} />
+          </Box>
           {loading ? (
             <Apploader />
           ) : (
             <>
-              <HStack align="center" justify="center" wrap="wrap">
-                {products &&
-                  products.map((product) => (
-                    <ProductCard key={product._id} product={product} />
-                  ))}
-              </HStack>
-              <HStack align="center" justify="center" my={5}>
-                <Pagination
-                  totalSize={count}
-                  currentPage={currentPage}
-                  sizePerPage={resPerPage}
-                  changeCurrentPage={setCurrentPageNo}
-                />
-              </HStack>
+              <Box my={20} mx={10}>
+                <Heading
+                  textAlign="center"
+                  fontSize="32px"
+                  fontFamily="fantasy"
+                  textColor="darkpurple"
+                >
+                  Latest Products
+                </Heading>
+                <ECarousel
+                  itemsToShow={4}
+                  easing="cubic-bezier(1,.15,.55,1.54)"
+                  tiltEasing="cubic-bezier(0.110, 1, 1.000, 0.210)"
+                  transitionMs={700}
+                >
+                  {products &&
+                    products.map((product) => (
+                      <ProductCard key={product._id} product={product} />
+                    ))}
+                </ECarousel>
+              </Box>
             </>
           )}
-          <Heading
-            textAlign="center"
-            my="30px"
-            fontSize="32px"
-            fontFamily="fantasy"
-            textColor="darkpurple"
-          >
-            Premium Products
-          </Heading>
           {loading ? (
             <Apploader />
           ) : (
-            <HStack align="center" justify="center">
-              {products &&
-                products
-                  .filter((product) => product.isPremium)
-                  .map((product) => (
+            <Box my={20} mx={10}>
+              <Heading
+                textAlign="center"
+                fontSize="32px"
+                fontFamily="fantasy"
+                textColor="darkpurple"
+              >
+                Premium Products
+              </Heading>
+              <ECarousel
+                itemsToShow={4}
+                easing="cubic-bezier(1,.15,.55,1.54)"
+                tiltEasing="cubic-bezier(0.110, 1, 1.000, 0.210)"
+                transitionMs={700}
+              >
+                {premiumProducts &&
+                  premiumProducts.map((product) => (
                     <ProductCard key={product._id} product={product} />
                   ))}
-              <Button rightIcon={<FaArrowRight />} />
-            </HStack>
+              </ECarousel>
+            </Box>
+          )}
+          {loading ? (
+            <Apploader />
+          ) : (
+            <Box my={20} mx={10}>
+              <Heading
+                textAlign="center"
+                fontSize="32px"
+                fontFamily="fantasy"
+                textColor="darkpurple"
+              >
+                Featured Products
+              </Heading>
+              <ECarousel
+                itemsToShow={4}
+                easing="cubic-bezier(1,.15,.55,1.54)"
+                tiltEasing="cubic-bezier(0.110, 1, 1.000, 0.210)"
+                transitionMs={700}
+              >
+                {featuredProducts &&
+                  featuredProducts.map((product) => (
+                    <ProductCard key={product._id} product={product} />
+                  ))}
+              </ECarousel>
+            </Box>
+          )}
+          {loading ? (
+            <Apploader />
+          ) : (
+            <Box my={20} mx={10}>
+              <Heading
+                textAlign="center"
+                fontSize="32px"
+                fontFamily="fantasy"
+                textColor="darkpurple"
+              >
+                Products on Sale
+              </Heading>
+              <ECarousel
+                itemsToShow={4}
+                easing="cubic-bezier(1,.15,.55,1.54)"
+                tiltEasing="cubic-bezier(0.110, 1, 1.000, 0.210)"
+                transitionMs={700}
+              >
+                {onSaleProducts &&
+                  onSaleProducts.map((product) => (
+                    <ProductCard key={product._id} product={product} />
+                  ))}
+              </ECarousel>
+            </Box>
           )}
         </Fragment>
       )}
