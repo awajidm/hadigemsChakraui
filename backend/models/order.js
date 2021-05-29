@@ -57,6 +57,10 @@ const orderSchema = mongoose.Schema({
     id: {
       type: String,
     },
+    paymentMethod: {
+      type: String,
+      required: true,
+    },
     status: {
       type: String,
     },

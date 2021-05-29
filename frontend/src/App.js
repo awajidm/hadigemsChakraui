@@ -8,6 +8,9 @@ import AppFooter from "./components/Layout/AppFooter";
 
 import Cart from "./components/Cart/Cart";
 import Shipping from "./components/Cart/Shipping";
+import ConfirmOrder from "./components/Cart/ConfirmOrder";
+import Payment from "./components/Cart/Payment";
+import OrderSuccess from "./components/Cart/OrderSuccess";
 
 import Home from "./components/Home/Home";
 import ProductDetails from "./components/Product/ProductDetails";
@@ -35,6 +38,9 @@ function App() {
 
       <Route path="/cart" component={Cart} exact />
       <ProtectedRoute path="/shipping" component={Shipping} />
+      <ProtectedRoute path="/order/confirm" component={ConfirmOrder} />
+      <ProtectedRoute path="/payment" component={Payment} />
+      <ProtectedRoute path="/success" component={OrderSuccess} />
 
       <Route path="/search/:keyword" component={Home} />
       <Route path="/login" component={Login} />

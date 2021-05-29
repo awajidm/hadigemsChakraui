@@ -20,6 +20,7 @@
     "react-gallery-carousel": "^0.2.2",
     "react-helmet": "^6.1.0",
     "react-icons": "^4.2.0",
+    "react-lottie": "^1.2.3",
     "react-pagination-js": "^2.0.0",
     "react-redux": "^7.2.3",
     "react-router-dom": "^5.2.0",

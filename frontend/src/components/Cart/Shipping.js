@@ -3,6 +3,8 @@ import React, { Fragment, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { saveShippingInfo } from "../../actions/cartActions";
 
+import CheckoutSteps from "./CheckoutSteps";
+
 //Chakra ui
 
 import {
@@ -22,21 +24,24 @@ const Shipping = ({ history }) => {
   const [address, setAddress] = useState(shippingInfo.address);
   const [city, setCity] = useState(shippingInfo.city);
   const [postalCode, setPostalCode] = useState(shippingInfo.postalCode);
-  const [phoneNumber, setPhoneNumber] = useState(shippingInfo.phoneNumber);
+  const [phoneNo, setphoneNo] = useState(shippingInfo.phoneNo);
+
+  const country = "pakistan";
 
   const dispatch = useDispatch();
 
   const submitHandler = (e) => {
     e.preventDefault();
 
-    dispatch(saveShippingInfo({ address, city, postalCode, phoneNumber }));
+    dispatch(saveShippingInfo({ address, city, postalCode, phoneNo, country }));
 
-    history.push("/confirm");
+    history.push("/order/confirm");
   };
 
   return (
     <Fragment>
       <MetaData title={"shipping information"} />
+      <CheckoutSteps shipping />
       <Container justify="center" mt={5} bgColor="darkpurple" p={5}>
         <Heading
           textAlign="center"
@@ -72,8 +77,8 @@ const Shipping = ({ history }) => {
               isFullWidth
               type="phone"
               placeholder="Phone Number"
-              value={phoneNumber}
-              onChange={(e) => setPhoneNumber(e.target.value)}
+              value={phoneNo}
+              onChange={(e) => setphoneNo(e.target.value)}
             />
             <Text color="warning">
               We are only shipping in pakistan keep supporting us so we can
