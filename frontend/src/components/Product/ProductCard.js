@@ -4,7 +4,6 @@ import { Link as ReactLink } from "react-router-dom";
 import {
   Box,
   Image,
-  Badge,
   IconButton,
   Button,
   Stack,

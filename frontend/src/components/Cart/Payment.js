@@ -28,7 +28,6 @@ const Payment = ({ history }) => {
 
   const dispatch = useDispatch();
   const toast = useToast();
-  const { user } = useSelector((state) => state.auth);
   const { cartItems, shippingInfo } = useSelector((state) => state.cart);
   const { error } = useSelector((state) => state.newOrder);
 
@@ -42,7 +41,7 @@ const Payment = ({ history }) => {
       });
       dispatch(clearErrors());
     }
-  }, [dispatch, error]);
+  }, [dispatch, error, toast]);
 
   const order = {
     orderItems: cartItems,

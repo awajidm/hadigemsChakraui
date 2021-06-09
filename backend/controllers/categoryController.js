@@ -54,11 +54,11 @@ exports.getCategories = catchAsyncErrors(async (req, res, next) => {
   const categories = await Category.find();
 
   if (categories) {
-    const categoryList = createCategoryList(categories);
+    // const categoryList = createCategoryList(categories);
 
     res.status(200).json({
       success: true,
-      categoryList,
+      categories,
     });
   }
 });

@@ -35,7 +35,7 @@ const Shipping = ({ history }) => {
 
     dispatch(saveShippingInfo({ address, city, postalCode, phoneNo, country }));
 
-    history.push("/order/confirm");
+    history.push("/confirm");
   };
 
   return (
@@ -87,7 +87,7 @@ const Shipping = ({ history }) => {
             <Input
               isFullWidth
               placeholder="Pakistan"
-              value={"pakistan"}
+              value={country}
               isDisabled
             />
             <Button

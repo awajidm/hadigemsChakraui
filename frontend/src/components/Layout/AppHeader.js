@@ -6,9 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   HStack,
   Image,
-  IconButton,
   Button,
-  Box,
   Avatar,
   Link,
   Menu,
@@ -82,15 +80,14 @@ const AppHeader = () => {
                 {user.name}
               </MenuButton>
               <MenuList bg="warning" minW="200">
-                {user && user.role !== "admin" ? (
-                  <MenuItem as={ReactLink} to="/orders/me">
-                    Orders
-                  </MenuItem>
-                ) : (
+                {user && user.role === "admin" && (
                   <MenuItem as={ReactLink} to="/dashboard">
                     Dashboard
                   </MenuItem>
                 )}
+                <MenuItem as={ReactLink} to="/orders/me">
+                  Orders
+                </MenuItem>
                 <MenuItem as={ReactLink} to="/me">
                   Profile
                 </MenuItem>

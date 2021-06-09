@@ -1,7 +1,6 @@
 import React, { Fragment, useState, useEffect } from "react";
 
 import {
-  Box,
   Heading,
   InputGroup,
   Input,

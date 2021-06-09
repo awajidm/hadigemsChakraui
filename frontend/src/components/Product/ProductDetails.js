@@ -3,10 +3,15 @@ import { Link as ReactLink } from "react-router-dom";
 
 //redux imports
 import { useDispatch, useSelector } from "react-redux";
-import { getProductDetails, clearErrors } from "../../actions/productActions";
+import {
+  getProductDetails,
+  clearErrors,
+  newReview,
+} from "../../actions/productActions";
 
 import { addItemToCart } from "../../actions/cartActions";
 
+import { NEW_REVIEW_RESET } from "../../constants/productConstants";
 //Chakra ui
 
 import {
@@ -23,6 +28,19 @@ import {
   Input,
   IconButton,
   Button,
+  useDisclosure,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalCloseButton,
+  ModalBody,
+  ModalFooter,
+  Textarea,
+  Alert,
+  AlertIcon,
+  AlertTitle,
+  Heading,
 } from "@chakra-ui/react";
 
 import BeautyStars from "beauty-stars";
@@ -42,9 +60,12 @@ import "react-gallery-carousel/dist/index.css";
 //app components
 import Loader from "../Layout/AppLoader";
 import MetaData from "../Layout/MetaData";
+import ListReviews from "./ListReviews";
 
 const ProductDetails = ({ match }) => {
   const [quantity, setQuantity] = useState(1);
+  const [rating, setRating] = useState(0);
+  const [comment, setComment] = useState();
 
   const dispatch = useDispatch();
   const toast = useToast();
@@ -52,8 +73,14 @@ const ProductDetails = ({ match }) => {
   const { loading, error, product } = useSelector(
     (state) => state.productDetails
   );
+  const { user } = useSelector((state) => state.auth);
+  const { error: reviewError, success } = useSelector(
+    (state) => state.newReview
+  );
 
   useEffect(() => {
+    dispatch(getProductDetails(match.params.id));
+
     if (error) {
       toast({
         title: error,
@@ -63,8 +90,27 @@ const ProductDetails = ({ match }) => {
       });
       dispatch(clearErrors());
     }
-    dispatch(getProductDetails(match.params.id));
-  }, [dispatch, error, match.params.id, toast]);
+
+    if (reviewError) {
+      toast({
+        title: reviewError,
+        status: "error",
+        duration: 9000,
+        isClosable: true,
+      });
+      dispatch(clearErrors());
+    }
+
+    if (success) {
+      toast({
+        title: "Review Posted Successfully",
+        status: "success",
+        duration: 5000,
+        isClosable: true,
+      });
+      dispatch({ type: NEW_REVIEW_RESET });
+    }
+  }, [dispatch, error, match.params.id, toast, reviewError, success]);
 
   const addToCart = () => {
     dispatch(addItemToCart(match.params.id, quantity));
@@ -100,6 +146,19 @@ const ProductDetails = ({ match }) => {
       src: `${image.url}`,
     }));
   }
+
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const reviewHandler = () => {
+    const formData = new FormData();
+
+    formData.set("rating", rating);
+    formData.set("comment", comment);
+    formData.set("productId", match.params.id);
+
+    dispatch(newReview(formData));
+    onClose();
+  };
 
   return (
     <Fragment>
@@ -170,7 +229,7 @@ const ProductDetails = ({ match }) => {
                   value={product.ratings}
                   size={12}
                   gap={6}
-                  activeColor="#6D213C"
+                  activeColor="#F7B32B"
                 />
                 <Link as={ReactLink} to={`/product/reviews`}>
                   {product.numOfReviews} reviews
@@ -244,14 +303,22 @@ const ProductDetails = ({ match }) => {
               </HStack>
 
               <Divider />
-              <Button
-                _hover={{ bgColor: "pblue" }}
-                color="white"
-                bgColor="warning"
-                borderRadius="50px"
-              >
-                Submit Review
-              </Button>
+              {user ? (
+                <Button
+                  _hover={{ bgColor: "pblue" }}
+                  color="white"
+                  bgColor="warning"
+                  borderRadius="50px"
+                  onClick={onOpen}
+                >
+                  Submit Review
+                </Button>
+              ) : (
+                <Alert status="error">
+                  <AlertIcon />
+                  <AlertTitle>Please Login to Submit your review</AlertTitle>
+                </Alert>
+              )}
             </VStack>
           </Stack>
           <Stack
@@ -279,6 +346,50 @@ const ProductDetails = ({ match }) => {
           </Stack>
         </Fragment>
       )}
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalCloseButton />
+          <ModalHeader>Submit Your Review</ModalHeader>
+          <ModalBody>
+            <Box d="flex" justifyContent="center" alignItems="center" my={3}>
+              <BeautyStars
+                value={rating}
+                onChange={(value) => setRating(value)}
+                size="30px"
+                activeColor="#F7B32B"
+              />
+            </Box>
+            <Divider />
+            <Textarea
+              value={comment}
+              onChange={(e) => setComment(e.target.value)}
+              placeholder="Enter your Comment"
+              my={5}
+            />
+          </ModalBody>
+          <ModalFooter>
+            <Button
+              variant="solid"
+              bgGradient="linear(to-r, darkpurple, warning)"
+              _hover={{
+                bgGradient: "linear(to-r, darkpurple, danger)",
+              }}
+              color="white"
+              size="sm"
+              isFullWidth
+              onClick={reviewHandler}
+            >
+              Submit Review
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+      <Stack>
+        {product.reviews && product.reviews.length > 0 && (
+          <ListReviews reviews={product.reviews} />
+        )}
+      </Stack>
     </Fragment>
   );
 };

@@ -133,6 +133,7 @@ const Cart = ({ history }) => {
               boxShadow="0px 0px 10px gray"
               p={3}
               borderRadius="md"
+              h="250px"
               justify="space-between"
             >
               <Heading

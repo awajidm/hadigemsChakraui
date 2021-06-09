@@ -5,6 +5,7 @@ const router = express.Router();
 // importing mathods from product controller
 const {
   getProducts,
+  getAdminProducts,
   newProduct,
   getSingleProduct,
   updateProduct,
@@ -20,6 +21,7 @@ const { isAuthenticatedUser, authorizeRole } = require("../middlewares/auth");
 //user routes
 
 router.route("/products").get(getProducts);
+router.route("/admin/products").get(getAdminProducts);
 router.route("/product/:id").get(getSingleProduct);
 
 //admin routes

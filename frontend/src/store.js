@@ -5,13 +5,19 @@ import {
   productReducer,
   productDetailsReducer,
   productCategoryReducer,
+  newReviewReducer,
+  newProductReducer,
 } from "./reducers/productReducer";
 import {
   authReducer,
   userReducer,
   forgotPasswordReducer,
 } from "./reducers/userReducer";
-import { newOrderReducer } from "./reducers/orderReducer";
+import {
+  newOrderReducer,
+  myOrdersReducer,
+  orderDetailsReducer,
+} from "./reducers/orderReducer";
 
 import { cartReducer } from "./reducers/cartReducer";
 
@@ -24,6 +30,10 @@ const reducer = combineReducers({
   forgotPassword: forgotPasswordReducer,
   cart: cartReducer,
   newOrder: newOrderReducer,
+  myOrders: myOrdersReducer,
+  orderDetails: orderDetailsReducer,
+  newReview: newReviewReducer,
+  newProduct: newProductReducer,
 });
 
 let intitialState = {
@@ -33,6 +43,9 @@ let intitialState = {
       : [],
     shippingInfo: localStorage.getItem(`shippingInfo`)
       ? JSON.parse(localStorage.getItem(`shippingInfo`))
+      : {},
+    paymentInfo: localStorage.getItem(`paymentInfo`)
+      ? JSON.parse(localStorage.getItem(`paymentInfo`))
       : {},
   },
 };

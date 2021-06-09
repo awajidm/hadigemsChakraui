@@ -1,0 +1,133 @@
+Date : 2021-06-06 00:37:50
+Directory : d:\Projects\HadiGemsProjects\AfterDeployTest\hadigemsChakraui
+Total : 81 files,  105681 codes, 211 comments, 787 blanks, all 106679 lines
+
+Languages
++------------+------------+------------+------------+------------+------------+
+| language   | files      | code       | comment    | blank      | total      |
++------------+------------+------------+------------+------------+------------+
+| JSON       |          6 |     99,122 |          0 |          6 |     99,128 |
+| JavaScript |         73 |      5,538 |        206 |        778 |      6,522 |
+| HTML       |          2 |      1,021 |          5 |          3 |      1,029 |
++------------+------------+------------+------------+------------+------------+
+
+Directories
++-----------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                            | files      | code       | comment    | blank      | total      |
++-----------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                               |         81 |    105,681 |        211 |        787 |    106,679 |
+| backend                                                                                                         |         25 |     78,734 |         94 |        306 |     79,134 |
+| backend\config                                                                                                  |          1 |         13 |          0 |          3 |         16 |
+| backend\controllers                                                                                             |          4 |        529 |         51 |        163 |        743 |
+| backend\data                                                                                                    |          1 |     77,543 |          0 |          2 |     77,545 |
+| backend\middlewares                                                                                             |          3 |         69 |          7 |         22 |         98 |
+| backend\models                                                                                                  |          4 |        311 |          8 |         24 |        343 |
+| backend\routes                                                                                                  |          4 |        104 |          8 |         35 |        147 |
+| backend\utils                                                                                                   |          6 |        116 |          6 |         36 |        158 |
+| frontend                                                                                                        |         53 |     24,168 |        112 |        478 |     24,758 |
+| frontend\public                                                                                                 |          1 |         18 |          0 |          2 |         20 |
+| frontend\src                                                                                                    |         50 |      4,348 |        112 |        474 |      4,934 |
+| frontend\src\actions                                                                                            |          4 |        405 |         14 |         64 |        483 |
+| frontend\src\components                                                                                         |         33 |      3,292 |         87 |        317 |      3,696 |
+| frontend\src\components\Admin                                                                                   |          3 |        486 |          8 |         33 |        527 |
+| frontend\src\components\Cart                                                                                    |          8 |        708 |          8 |         73 |        789 |
+| frontend\src\components\Cart\lotties                                                                            |          1 |          1 |          0 |          0 |          1 |
+| frontend\src\components\Home                                                                                    |          1 |        276 |          3 |         21 |        300 |
+| frontend\src\components\Layout                                                                                  |          8 |        248 |          0 |         30 |        278 |
+| frontend\src\components\Order                                                                                   |          2 |        251 |          5 |         22 |        278 |
+| frontend\src\components\Product                                                                                 |          3 |        510 |          3 |         45 |        558 |
+| frontend\src\components\User                                                                                    |          7 |        788 |         60 |         88 |        936 |
+| frontend\src\components\routes                                                                                  |          1 |         25 |          0 |          5 |         30 |
+| frontend\src\constants                                                                                          |          4 |         57 |          0 |         21 |         78 |
+| frontend\src\reducers                                                                                           |          4 |        438 |          0 |         43 |        481 |
+| frontend\src\styles                                                                                             |          2 |         21 |          5 |          3 |         29 |
+| frontend\src\styles\components                                                                                  |          1 |          9 |          4 |          1 |         14 |
++-----------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++-----------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| filename                                                                                                        | language   | code       | comment    | blank      | total      |
++-----------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| d:\Projects\HadiGemsProjects\AfterDeployTest\hadigemsChakraui\backend\app.js                                    | JavaScript |         21 |          8 |         10 |         39 |
+| d:\Projects\HadiGemsProjects\AfterDeployTest\hadigemsChakraui\backend\config\database.js                        | JavaScript |         13 |          0 |          3 |         16 |
+| d:\Projects\HadiGemsProjects\AfterDeployTest\hadigemsChakraui\backend\controllers\authController.js             | JavaScript |        194 |         28 |         71 |        293 |
+| d:\Projects\HadiGemsProjects\AfterDeployTest\hadigemsChakraui\backend\controllers\categoryController.js         | JavaScript |         92 |          6 |         24 |        122 |
+| d:\Projects\HadiGemsProjects\AfterDeployTest\hadigemsChakraui\backend\controllers\orderController.js            | JavaScript |         92 |          6 |         26 |        124 |
+| d:\Projects\HadiGemsProjects\AfterDeployTest\hadigemsChakraui\backend\controllers\productController.js          | JavaScript |        151 |         11 |         42 |        204 |
+| d:\Projects\HadiGemsProjects\AfterDeployTest\hadigemsChakraui\backend\data\products.json                        | JSON       |     77,543 |          0 |          2 |     77,545 |
+| d:\Projects\HadiGemsProjects\AfterDeployTest\hadigemsChakraui\backend\middlewares\auth.js                       | JavaScript |         26 |          2 |          7 |         35 |
+| d:\Projects\HadiGemsProjects\AfterDeployTest\hadigemsChakraui\backend\middlewares\catchAsyncErrors.js           | JavaScript |          2 |          0 |          1 |          3 |
+| d:\Projects\HadiGemsProjects\AfterDeployTest\hadigemsChakraui\backend\middlewares\errors.js                     | JavaScript |         41 |          5 |         14 |         60 |
+| d:\Projects\HadiGemsProjects\AfterDeployTest\hadigemsChakraui\backend\models\category.js                        | JavaScript |         20 |          0 |          3 |         23 |
+| d:\Projects\HadiGemsProjects\AfterDeployTest\hadigemsChakraui\backend\models\order.js                           | JavaScript |        103 |          0 |          3 |        106 |
+| d:\Projects\HadiGemsProjects\AfterDeployTest\hadigemsChakraui\backend\models\product.js                         | JavaScript |        120 |          0 |          6 |        126 |
+| d:\Projects\HadiGemsProjects\AfterDeployTest\hadigemsChakraui\backend\models\user.js                            | JavaScript |         68 |          8 |         12 |         88 |
+| d:\Projects\HadiGemsProjects\AfterDeployTest\hadigemsChakraui\backend\routes\auth.js                            | JavaScript |         34 |          2 |         11 |         47 |
+| d:\Projects\HadiGemsProjects\AfterDeployTest\hadigemsChakraui\backend\routes\category.js                        | JavaScript |         20 |          2 |          7 |         29 |
+| d:\Projects\HadiGemsProjects\AfterDeployTest\hadigemsChakraui\backend\routes\order.js                           | JavaScript |         22 |          0 |          7 |         29 |
+| d:\Projects\HadiGemsProjects\AfterDeployTest\hadigemsChakraui\backend\routes\product.js                         | JavaScript |         28 |          4 |         10 |         42 |
+| d:\Projects\HadiGemsProjects\AfterDeployTest\hadigemsChakraui\backend\server.js                                 | JavaScript |         28 |          6 |         11 |         45 |
+| d:\Projects\HadiGemsProjects\AfterDeployTest\hadigemsChakraui\backend\utils\ErrorHandler.js                     | JavaScript |          8 |          1 |          4 |         13 |
+| d:\Projects\HadiGemsProjects\AfterDeployTest\hadigemsChakraui\backend\utils\apiFeatures.js                      | JavaScript |         36 |          2 |         10 |         48 |
+| d:\Projects\HadiGemsProjects\AfterDeployTest\hadigemsChakraui\backend\utils\jwtToken.js                         | JavaScript |         16 |          3 |          5 |         24 |
+| d:\Projects\HadiGemsProjects\AfterDeployTest\hadigemsChakraui\backend\utils\placingIds.js                       | JavaScript |         18 |          0 |          4 |         22 |
+| d:\Projects\HadiGemsProjects\AfterDeployTest\hadigemsChakraui\backend\utils\seeder.js                           | JavaScript |         19 |          0 |          8 |         27 |
+| d:\Projects\HadiGemsProjects\AfterDeployTest\hadigemsChakraui\backend\utils\sendEmail.js                        | JavaScript |         19 |          0 |          5 |         24 |
+| d:\Projects\HadiGemsProjects\AfterDeployTest\hadigemsChakraui\frontend\package-lock.json                        | JSON       |     19,737 |          0 |          1 |     19,738 |
+| d:\Projects\HadiGemsProjects\AfterDeployTest\hadigemsChakraui\frontend\package.json                             | JSON       |         65 |          0 |          1 |         66 |
+| d:\Projects\HadiGemsProjects\AfterDeployTest\hadigemsChakraui\frontend\public\index.html                        | HTML       |         18 |          0 |          2 |         20 |
+| d:\Projects\HadiGemsProjects\AfterDeployTest\hadigemsChakraui\frontend\src\App.js                               | JavaScript |         70 |          4 |         15 |         89 |
+| d:\Projects\HadiGemsProjects\AfterDeployTest\hadigemsChakraui\frontend\src\actions\cartActions.js               | JavaScript |         43 |          0 |         10 |         53 |
+| d:\Projects\HadiGemsProjects\AfterDeployTest\hadigemsChakraui\frontend\src\actions\orderActions.js              | JavaScript |         75 |          4 |         14 |         93 |
+| d:\Projects\HadiGemsProjects\AfterDeployTest\hadigemsChakraui\frontend\src\actions\productActions.js            | JavaScript |        118 |          1 |         21 |        140 |
+| d:\Projects\HadiGemsProjects\AfterDeployTest\hadigemsChakraui\frontend\src\actions\userActions.js               | JavaScript |        169 |          9 |         19 |        197 |
+| d:\Projects\HadiGemsProjects\AfterDeployTest\hadigemsChakraui\frontend\src\components\Admin\Dashboard.js        | JavaScript |        144 |          0 |         11 |        155 |
+| d:\Projects\HadiGemsProjects\AfterDeployTest\hadigemsChakraui\frontend\src\components\Admin\ProductList.js      | JavaScript |        278 |          8 |         16 |        302 |
+| d:\Projects\HadiGemsProjects\AfterDeployTest\hadigemsChakraui\frontend\src\components\Admin\SideBar.js          | JavaScript |         64 |          0 |          6 |         70 |
+| d:\Projects\HadiGemsProjects\AfterDeployTest\hadigemsChakraui\frontend\src\components\Cart\Cart.js              | JavaScript |        179 |          2 |         12 |        193 |
+| d:\Projects\HadiGemsProjects\AfterDeployTest\hadigemsChakraui\frontend\src\components\Cart\CheckoutSteps.js     | JavaScript |         92 |          1 |          6 |         99 |
+| d:\Projects\HadiGemsProjects\AfterDeployTest\hadigemsChakraui\frontend\src\components\Cart\ConfirmOrder.js      | JavaScript |        166 |          3 |         12 |        181 |
+| d:\Projects\HadiGemsProjects\AfterDeployTest\hadigemsChakraui\frontend\src\components\Cart\OrderSuccess.js      | JavaScript |         37 |          0 |          6 |         43 |
+| d:\Projects\HadiGemsProjects\AfterDeployTest\hadigemsChakraui\frontend\src\components\Cart\Payment.js           | JavaScript |        110 |          0 |         17 |        127 |
+| d:\Projects\HadiGemsProjects\AfterDeployTest\hadigemsChakraui\frontend\src\components\Cart\PaymentRadioCard.js  | JavaScript |         26 |          0 |          5 |         31 |
+| d:\Projects\HadiGemsProjects\AfterDeployTest\hadigemsChakraui\frontend\src\components\Cart\Shipping.js          | JavaScript |         97 |          2 |         15 |        114 |
+| d:\Projects\HadiGemsProjects\AfterDeployTest\hadigemsChakraui\frontend\src\components\Cart\lotties\success.json | JSON       |          1 |          0 |          0 |          1 |
+| d:\Projects\HadiGemsProjects\AfterDeployTest\hadigemsChakraui\frontend\src\components\Home\Home.js              | JavaScript |        276 |          3 |         21 |        300 |
+| d:\Projects\HadiGemsProjects\AfterDeployTest\hadigemsChakraui\frontend\src\components\Layout\AppFilter.js       | JavaScript |          0 |          0 |          1 |          1 |
+| d:\Projects\HadiGemsProjects\AfterDeployTest\hadigemsChakraui\frontend\src\components\Layout\AppFooter.js       | JavaScript |         61 |          0 |          4 |         65 |
+| d:\Projects\HadiGemsProjects\AfterDeployTest\hadigemsChakraui\frontend\src\components\Layout\AppHeader.js       | JavaScript |        120 |          0 |         11 |        131 |
+| d:\Projects\HadiGemsProjects\AfterDeployTest\hadigemsChakraui\frontend\src\components\Layout\AppLoader.js       | JavaScript |          9 |          0 |          3 |         12 |
+| d:\Projects\HadiGemsProjects\AfterDeployTest\hadigemsChakraui\frontend\src\components\Layout\AppMenu.js         | JavaScript |          0 |          0 |          1 |          1 |
+| d:\Projects\HadiGemsProjects\AfterDeployTest\hadigemsChakraui\frontend\src\components\Layout\AppSearch.js       | JavaScript |         41 |          0 |          3 |         44 |
+| d:\Projects\HadiGemsProjects\AfterDeployTest\hadigemsChakraui\frontend\src\components\Layout\AppSlider.js       | JavaScript |          7 |          0 |          4 |         11 |
+| d:\Projects\HadiGemsProjects\AfterDeployTest\hadigemsChakraui\frontend\src\components\Layout\MetaData.js        | JavaScript |         10 |          0 |          3 |         13 |
+| d:\Projects\HadiGemsProjects\AfterDeployTest\hadigemsChakraui\frontend\src\components\Order\ListOrders.js       | JavaScript |         96 |          3 |         10 |        109 |
+| d:\Projects\HadiGemsProjects\AfterDeployTest\hadigemsChakraui\frontend\src\components\Order\OrderDetails.js     | JavaScript |        155 |          2 |         12 |        169 |
+| d:\Projects\HadiGemsProjects\AfterDeployTest\hadigemsChakraui\frontend\src\components\Product\ListReviews.js    | JavaScript |         33 |          0 |          4 |         37 |
+| d:\Projects\HadiGemsProjects\AfterDeployTest\hadigemsChakraui\frontend\src\components\Product\ProductCard.js    | JavaScript |        117 |          0 |          6 |        123 |
+| d:\Projects\HadiGemsProjects\AfterDeployTest\hadigemsChakraui\frontend\src\components\Product\ProductDetails.js | JavaScript |        360 |          3 |         35 |        398 |
+| d:\Projects\HadiGemsProjects\AfterDeployTest\hadigemsChakraui\frontend\src\components\User\ForgotPassword.js    | JavaScript |         93 |          0 |         13 |        106 |
+| d:\Projects\HadiGemsProjects\AfterDeployTest\hadigemsChakraui\frontend\src\components\User\Login.js             | JavaScript |        113 |          1 |         13 |        127 |
+| d:\Projects\HadiGemsProjects\AfterDeployTest\hadigemsChakraui\frontend\src\components\User\NewPassword.js       | JavaScript |        107 |          0 |         15 |        122 |
+| d:\Projects\HadiGemsProjects\AfterDeployTest\hadigemsChakraui\frontend\src\components\User\Profile.js           | JavaScript |        103 |          0 |          5 |        108 |
+| d:\Projects\HadiGemsProjects\AfterDeployTest\hadigemsChakraui\frontend\src\components\User\Register.js          | JavaScript |        133 |         29 |         14 |        176 |
+| d:\Projects\HadiGemsProjects\AfterDeployTest\hadigemsChakraui\frontend\src\components\User\UpdatePassword.js    | JavaScript |        110 |          0 |         15 |        125 |
+| d:\Projects\HadiGemsProjects\AfterDeployTest\hadigemsChakraui\frontend\src\components\User\UpdateProfile.js     | JavaScript |        129 |         30 |         13 |        172 |
+| d:\Projects\HadiGemsProjects\AfterDeployTest\hadigemsChakraui\frontend\src\components\routes\ProtectedRoute.js  | JavaScript |         25 |          0 |          5 |         30 |
+| d:\Projects\HadiGemsProjects\AfterDeployTest\hadigemsChakraui\frontend\src\constants\cartConstants.js           | JavaScript |          4 |          0 |          2 |          6 |
+| d:\Projects\HadiGemsProjects\AfterDeployTest\hadigemsChakraui\frontend\src\constants\orderConstants.js          | JavaScript |         10 |          0 |          4 |         14 |
+| d:\Projects\HadiGemsProjects\AfterDeployTest\hadigemsChakraui\frontend\src\constants\productConstants.js        | JavaScript |         17 |          0 |          6 |         23 |
+| d:\Projects\HadiGemsProjects\AfterDeployTest\hadigemsChakraui\frontend\src\constants\userConstants.js           | JavaScript |         26 |          0 |          9 |         35 |
+| d:\Projects\HadiGemsProjects\AfterDeployTest\hadigemsChakraui\frontend\src\index.js                             | JavaScript |         15 |          2 |          5 |         22 |
+| d:\Projects\HadiGemsProjects\AfterDeployTest\hadigemsChakraui\frontend\src\reducers\cartReducer.js              | JavaScript |         48 |          0 |          8 |         56 |
+| d:\Projects\HadiGemsProjects\AfterDeployTest\hadigemsChakraui\frontend\src\reducers\orderReducer.js             | JavaScript |         88 |          0 |         10 |         98 |
+| d:\Projects\HadiGemsProjects\AfterDeployTest\hadigemsChakraui\frontend\src\reducers\productReducer.js           | JavaScript |        144 |          0 |         16 |        160 |
+| d:\Projects\HadiGemsProjects\AfterDeployTest\hadigemsChakraui\frontend\src\reducers\userReducer.js              | JavaScript |        158 |          0 |          9 |        167 |
+| d:\Projects\HadiGemsProjects\AfterDeployTest\hadigemsChakraui\frontend\src\store.js                             | JavaScript |         50 |          0 |          6 |         56 |
+| d:\Projects\HadiGemsProjects\AfterDeployTest\hadigemsChakraui\frontend\src\styles\components\ButtonStyle.js     | JavaScript |          9 |          4 |          1 |         14 |
+| d:\Projects\HadiGemsProjects\AfterDeployTest\hadigemsChakraui\frontend\src\styles\theme.js                      | JavaScript |         12 |          1 |          2 |         15 |
+| d:\Projects\HadiGemsProjects\AfterDeployTest\hadigemsChakraui\navbar.htm                                        | HTML       |      1,003 |          5 |          1 |      1,009 |
+| d:\Projects\HadiGemsProjects\AfterDeployTest\hadigemsChakraui\package-lock.json                                 | JSON       |      1,744 |          0 |          1 |      1,745 |
+| d:\Projects\HadiGemsProjects\AfterDeployTest\hadigemsChakraui\package.json                                      | JSON       |         32 |          0 |          1 |         33 |
+| Total                                                                                                           |            |    105,681 |        211 |        787 |    106,679 |
++-----------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+

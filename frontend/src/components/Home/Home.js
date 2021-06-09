@@ -10,7 +10,7 @@ import MetaData from "../Layout/MetaData";
 
 //redux imports
 import { useDispatch, useSelector } from "react-redux";
-import { getProducts, getCategory } from "../../actions/productActions";
+import { getProducts, getCategories } from "../../actions/productActions";
 
 import {
   Heading,
@@ -18,14 +18,11 @@ import {
   Stack,
   Text,
   useToast,
-  VStack,
-  HStack,
   Image,
   Wrap,
   WrapItem,
+  Divider,
 } from "@chakra-ui/react";
-
-import { FaArrowRight } from "react-icons/fa";
 
 import Pagination from "react-pagination-js";
 import "react-pagination-js/dist/styles.css";
@@ -61,6 +58,8 @@ const Home = ({ match }) => {
     premiumProducts,
     onSaleProducts,
   } = useSelector((state) => state.products);
+
+  const { categoryList } = useSelector((state) => state.productCategory);
   const keyword = match.params.keyword;
 
   useEffect(() => {
@@ -73,7 +72,7 @@ const Home = ({ match }) => {
       });
     }
     dispatch(getProducts(currentPage, keyword, price));
-    dispatch(getCategory());
+    dispatch(getCategories());
   }, [dispatch, error, currentPage, keyword, price, toast]);
 
   function setCurrentPageNo(pageNumber) {
@@ -85,14 +84,38 @@ const Home = ({ match }) => {
     count = filteredProdcutsCount;
   }
 
+  const renderCategoryList = (categories) => {
+    let myCategoryList = [];
+
+    categories &&
+      categories.map((category) =>
+        myCategoryList.push(
+          <Box>
+            <Text fontSize={16} fontFamily="unset">
+              {category.name}
+            </Text>
+            <Divider my={2} />
+            <Box ml={5}>
+              {category.children.length > 0 ? (
+                <Text borderLeft="1px solid gray.400">
+                  {renderCategoryList(category.children)}
+                </Text>
+              ) : null}
+            </Box>
+          </Box>
+        )
+      );
+    return myCategoryList;
+  };
+
   return (
     <>
       <MetaData title="Home" />
 
       {keyword ? (
         //TODO
-        <Stack direction="row">
-          <Stack width="25vw" p={20} spacing={10}>
+        <Stack direction="row" justify="space-between">
+          <Stack p={10} spacing={10}>
             <Heading
               textAlign="center"
               fontSize="32px"
@@ -125,6 +148,7 @@ const Home = ({ match }) => {
             <Text fontSize={20} fontFamily="unset" textColor="danger">
               Categories
             </Text>
+            <Box>{renderCategoryList(categoryList)}</Box>
             <Text fontSize={20} fontFamily="unset" textColor="danger">
               Ratings
             </Text>
@@ -132,7 +156,7 @@ const Home = ({ match }) => {
               Colors
             </Text>
           </Stack>
-          <Stack spacing={4} align="center" justify="center">
+          <Stack spacing={4} align="center" justify="center" width="70vw">
             <Heading
               textAlign="center"
               fontSize="32px"
